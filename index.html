@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linh Vu | Unreal Engine Developer</title>
+    <meta name="description" content="Portfolio of Linh Vu - Unreal Engine Developer">
+    <style>
+        /* --- CLEAN CSS RESET & STYLES --- */
+        :root {
+            --bg-color: #000000;
+            --text-color: #bafaff;
+            --accent-color: #2b5672;
+            --container-width: 1100px;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3 { margin-bottom: 0.5em; font-weight: 700; }
+        h1 { font-size: 3.5rem; text-align: center; margin-top: 2rem; letter-spacing: -1px; }
+        h2 { font-size: 2rem; text-align: center; margin-top: 3rem; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.25rem; text-align: center; color: #666; margin-top: -0.5em; font-weight: 400; }
+        p { margin-bottom: 1rem; }
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Layout */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header { padding: 60px 20px; text-align: center; }
+        .footer { text-align: center; padding: 40px; margin-top: 60px; border-top: 1px solid #eee; }
+
+        /* Grid for Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+
+        /* Individual Project Layout */
+        .project-row {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Alternating Layout for Desktop */
+        @media (min-width: 768px) {
+            .project-row {
+                flex-direction: row;
+                text-align: left;
+            }
+            .project-row:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+            .project-media { flex: 1; }
+            .project-content { flex: 1; padding: 0 40px; }
+        }
+
+        /* Images and Media */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background-color: #fb9027; /* Keeping the orange accent from your original site */
+            width: 100px;
+            margin: 40px auto;
+            border: none;
+        }
+
+        /* Specific text styles extracted from your site */
+        .highlight { color: #fb9027; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1>Linh Vu</h1>
+            <h3>Unreal Engine Developer</h3>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="project-grid">
+
+            <section class="project-row">
+                <div class="project-media">
+                    <img src="images/4f63b3_9ba4382ef0de432f82a8d14260fd86fb~mv2.png" alt="Auto Battler Game">
+                </div>
+                <div class="project-content">
+                    <p>Developed a single player auto-battler game. Did everything I could except the most important part which is marketing.</p>
+                    </div>
+                                </section>
+
+                                <hr class="divider">
+
+                                <section class="project-row">
+                                    <div class="project-media">
+                                        <img src="images/4f63b3_2b338e94e7dd427dae75ab7afdee5587~mv2.png" alt="Zombie Shooter">
+                                    </div>
+                                    <div class="project-content">
+                                        <div class="video-container" style="margin-top:20px;">
+                                            <iframe src="https://www.youtube.com/embed/2IPbygLYHZ4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                        </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="project-row">
+                <div class="project-media">
+                    <img src="images/4f63b3_e7d06d2edb564c998e5dc84007900110~mv2.png" alt="Lyra PVE Shooter">
+                </div>
+                <div class="project-content">
+                    <ul>
+                        <li>Transform UE5 Lyra project into a complete playable online PVE Shooter inspired by Killing Floor.</li>
+                        <li>Fully customizable gameplay data from tables to enable game designer to tweak the game difficulty.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="project-row">
+                <div class="project-media">
+                    <img src="images/4f63b3_2b338e94e7dd427dae75ab7afdee5587~mv2.png" alt="Zombie Shooter">
+                </div>
+                <div class="project-content">
+                    <p>Work on a coop third person shooter for Mobile. Players defend against waves of zombies.</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="project-row" style="text-align: center; display: block;">
+                <p>In another project I did 3d Modeling with Blender, Texturing with Substance and make animation using Cascadeur for character, and implemented them into Unreal Engine 5.</p>
+                <br>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <img src="images/4f63b3_3424995f185343a793cb06b68f285824f003.jpg" width="208" alt="Character Model 1">
+                    <img src="images/4f63b3_27284fe742fb44928ed390d4450d8f45f003.jpg" width="208" alt="Character Model 2">
+                    <img src="images/4f63b3_2875c138d6e94855bcd378f014f91fd1f003.jpg" width="208" alt="Character Model 3">
+                </div>
+            </section>
+
+            <h2>Teamwork</h2>
+            <section class="project-row">
+                <div class="project-media">
+                    <img src="images/FlowChart.png" alt="Flowchart">
+                </div>
+                <div class="project-content">
+                    <p>Here’s a flow chart I designed to demonstrate the intended interaction between the game and the back-end system. This aided the backend in grasping the concept and completing their tasks.</p>
+                </div>
+            </section>
+
+            <h2>Technical Systems & Tools</h2>
+            <section class="project-row">
+                <div class="project-content">
+                    <ul>
+                        <li><strong>Crypto UMG Chart:</strong> Drawing an UMG chart using C++ for real-time Crypto price from REST API, GraphQL and WebSocket API.</li>
+                        <li><strong>Emote System:</strong> Animation made in Cascadeur, adding Niagara Effect.</li>
+                        <li><strong>Network:</strong> All systems are multiplayer ready.</li>
+                    </ul>
+                </div>
+                <div class="project-media">
+                    <img src="images/4f63b3_c4367dd81f54409da70c1b09e732aa2df000.jpg" alt="Crypto Chart">
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="project-row">
+                <div class="project-media" style="text-align: center;">
+                    <img src="images/ToanLogo96.png" style="width: 150px; margin: 0 auto;" alt="Swift Math Logo">
+                </div>
+                <div class="project-content">
+                    <p class="highlight" style="font-size: 1.5rem;">A simple mobile game developed in 3 hours, and took 3 days to publish on Google Play.</p>
+                    <p><a href="https://play.google.com/store/apps/details?id=com.mont.SwiftMath" target="_blank">View "Swift Math" on Google Play</a></p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div style="text-align: center;">
+                    <h2>Inventory GameFeature</h2>
+                    <p><a href="https://github.com/lingsvu/Inventory-GameFeature" target="_blank">lingsvu/Inventory-GameFeature (github.com)</a></p>
+                    <p>A multiplayer ready Inventory system made in C++ to run loop for sorting, finding Item faster.</p>
+                </div>
+                <div style="text-align: center;">
+                    <h2>Jigsaw Inventory</h2>
+                    <p><a href="https://github.com/lingsvu/JigsawInventory" target="_blank">github.com/lingsvu/JigsawInventory</a></p>
+                    <p>A singleplayer Inventory system made in C++ inspired by Resident Evil.</p>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <h2>A Free VR Game</h2>
+            <section class="project-row">
+                <div class="project-media">
+                    <img src="images/s2.png" alt="VR Game">
+                </div>
+                <div class="project-content">
+                    <p><a href="https://lingsvu.itch.io/chicken-hunter" target="_blank">Chicken Hunter by Linh (itch.io)</a></p>
+                    <p>Pick up the handgun and start shooting the flying chicken.</p>
+                    <p><small>Made with Unreal to work with Meta Quest 2. Start VR Link with your pc before starting the game.</small></p>
+                </div>
+            </section>
+
+            <h2>Other Work</h2>
+            <div style="margin-top: 20px;">
+                <p><strong>1 / Monkey Empire:</strong> Work on mobile MMORTS game Monkey Empire</p>
+                <p><strong>2 / Up4Distribution:</strong> Work as freelance for Up4Distribution UE4 project</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <h2>Linh Vu</h2>
+        <p><a href="mailto:lingsvu@gmail.com">lingsvu@gmail.com</a></p>
+    </footer>
+
+</body>
+</html>
