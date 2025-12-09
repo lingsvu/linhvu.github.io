@@ -4,258 +4,449 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linh Vu | Unreal Engine Developer</title>
-    <meta name="description" content="Portfolio of Linh Vu - Unreal Engine Developer">
+    <meta name="description" content="Portfolio of Linh Vu - Unreal Engine Developer specializing in C++, Multiplayer, and Gameplay Programming.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* --- CLEAN CSS RESET & STYLES --- */
+        /* --- CORE VARIABLES & RESET --- */
         :root {
-            --bg-color: #000000;
-            --text-color: #bafaff;
-            --accent-color: #2b5672;
-            --container-width: 1100px;
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --text-primary: #E0E0E0;
+            --text-secondary: #A0A0A0;
+            --accent-color: #fb9027; /* Unreal Orange */
+            --accent-hover: #ffaa4d;
+            --link-color: #4dabf7;
+            --container-width: 1000px;
+            --radius: 8px;
+            --transition: all 0.3s ease;
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             margin: 0;
-            line-height: 1.6;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Typography */
-        h1, h2, h3 { margin-bottom: 0.5em; font-weight: 700; }
-        h1 { font-size: 3.5rem; text-align: center; margin-top: 2rem; letter-spacing: -1px; }
-        h2 { font-size: 2rem; text-align: center; margin-top: 3rem; margin-bottom: 1.5rem; }
-        h3 { font-size: 1.25rem; text-align: center; color: #666; margin-top: -0.5em; font-weight: 400; }
-        p { margin-bottom: 1rem; }
-        a { color: var(--accent-color); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-
-        /* Layout */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 20px;
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            margin-top: 0;
         }
 
-        .header { padding: 60px 20px; text-align: center; }
-        .footer { text-align: center; padding: 40px; margin-top: 60px; border-top: 1px solid #eee; }
+        h1 { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        h2 { font-size: 2rem; margin-bottom: 1.5rem; position: relative; display: inline-block; }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+        h3 { font-size: 1.5rem; font-weight: 400; color: var(--accent-color); }
+        p { margin-bottom: 1rem; color: var(--text-secondary); }
+        
+        a { color: var(--link-color); text-decoration: none; transition: var(--transition); }
+        a:hover { color: var(--accent-color); }
 
-        /* Grid for Projects */
-        .project-grid {
+        ul { padding-left: 20px; color: var(--text-secondary); }
+        li { margin-bottom: 8px; }
+
+        /* Helpers */
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; }
+        .text-center { text-align: center; }
+        .mt-5 { margin-top: 3rem; }
+        .mb-5 { margin-bottom: 3rem; }
+
+        /* --- COMPONENTS --- */
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: #fff; letter-spacing: 1px; }
+        .nav-links a { margin-left: 20px; color: var(--text-primary); font-size: 0.9rem; font-weight: 600; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(251, 144, 39, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+        .btn-outline:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, #252525 0%, #121212 70%);
+        }
+        .hero p { max-width: 600px; margin: 0 auto 30px; font-size: 1.1rem; }
+
+        /* Project Card Layout */
+        .section-title { text-align: center; margin: 80px 0 40px; }
+        
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid #333;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 60px;
         }
 
-        /* Individual Project Layout */
-        .project-row {
+        .project-media {
+            background: #000;
             display: flex;
-            flex-direction: column;
-            gap: 20px;
             align-items: center;
-        }
-
-        /* Alternating Layout for Desktop */
-        @media (min-width: 768px) {
-            .project-row {
-                flex-direction: row;
-                text-align: left;
-            }
-            .project-row:nth-child(even) {
-                flex-direction: row-reverse;
-            }
-            .project-media { flex: 1; }
-            .project-content { flex: 1; padding: 0 40px; }
-        }
-
-        /* Images and Media */
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: block;
+            justify-content: center;
+            overflow: hidden;
         }
         
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-media img { transform: scale(1.03); }
+
+        .project-content { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        .project-content h3 { color: #fff; margin-bottom: 15px; font-size: 1.5rem; text-align: left; }
+        
+        /* Video Container */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
+            padding-bottom: 56.25%; /* 16:9 */
             height: 0;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
         }
         .video-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
         }
 
-        /* Divider */
-        .divider {
-            height: 2px;
-            background-color: #fb9027; /* Keeping the orange accent from your original site */
-            width: 100px;
-            margin: 40px auto;
-            border: none;
+        /* Tech Tags */
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; margin-bottom: 20px; }
+        .tag {
+            background: #333;
+            color: #ccc;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Specific text styles extracted from your site */
-        .highlight { color: #fb9027; font-weight: bold; }
+        /* Image Grid (Gallery) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .gallery-grid img { width: 100%; border-radius: 4px; transition: var(--transition); }
+        .gallery-grid img:hover { transform: scale(1.05); cursor: pointer; }
+
+        /* Two Column Grid for Github/Small Projects */
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .mini-card {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid #333;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .mini-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 0;
+            margin-top: 80px;
+            border-top: 1px solid #333;
+            background: var(--bg-secondary);
+        }
+        .social-link {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .social-link:hover { border-color: var(--accent-color); color: var(--accent-color); text-decoration: none; }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .project-card { grid-template-columns: 1.2fr 1fr; }
+            .project-card.reverse { grid-template-columns: 1fr 1.2fr; }
+            .project-card.reverse .project-media { order: 2; }
+            .grid-2-col { grid-template-columns: 1fr 1fr; }
+            
+            h1 { font-size: 4rem; }
+        }
     </style>
 </head>
 <body>
 
-    <header class="header">
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">LINH VU <span style="color:var(--accent-color)">.DEV</span></div>
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#github">Open Source</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
         <div class="container">
+            <h3>Hello, I'm</h3>
             <h1>Linh Vu</h1>
-            <h3>Unreal Engine Developer</h3>
+            <p><strong>Unreal Engine Developer</strong> specializing in C++, Gameplay Programming, and Multiplayer Systems.</p>
+            <div style="margin-top: 30px;">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="mailto:lingsvu@gmail.com" class="btn btn-outline" style="margin-left: 10px;">Get In Touch</a>
+            </div>
         </div>
     </header>
 
     <main class="container">
         
-        <div class="project-grid">
-
-            <section class="project-row">
-                <div class="project-media">
-                    <img src="images/4f63b3_9ba4382ef0de432f82a8d14260fd86fb~mv2.png" alt="Auto Battler Game">
-                </div>
-                <div class="project-content">
-                    <p>Developed a single player auto-battler game. Did everything I could except the most important part which is marketing.</p>
-                    </div>
-                                </section>
-
-                                <hr class="divider">
-
-                                <section class="project-row">
-                                    <div class="project-media">
-                                        <img src="images/4f63b3_2b338e94e7dd427dae75ab7afdee5587~mv2.png" alt="Zombie Shooter">
-                                    </div>
-                                    <div class="project-content">
-                                        <div class="video-container" style="margin-top:20px;">
-                                            <iframe src="https://www.youtube.com/embed/2IPbygLYHZ4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                        </div>
-                </div>
-            </section>
-
-            <hr class="divider">
-
-            <section class="project-row">
-                <div class="project-media">
-                    <img src="images/4f63b3_e7d06d2edb564c998e5dc84007900110~mv2.png" alt="Lyra PVE Shooter">
-                </div>
-                <div class="project-content">
-                    <ul>
-                        <li>Transform UE5 Lyra project into a complete playable online PVE Shooter inspired by Killing Floor.</li>
-                        <li>Fully customizable gameplay data from tables to enable game designer to tweak the game difficulty.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <hr class="divider">
-
-            <section class="project-row">
-                <div class="project-media">
-                    <img src="images/4f63b3_2b338e94e7dd427dae75ab7afdee5587~mv2.png" alt="Zombie Shooter">
-                </div>
-                <div class="project-content">
-                    <p>Work on a coop third person shooter for Mobile. Players defend against waves of zombies.</p>
-                </div>
-            </section>
-
-            <hr class="divider">
-
-            <section class="project-row" style="text-align: center; display: block;">
-                <p>In another project I did 3d Modeling with Blender, Texturing with Substance and make animation using Cascadeur for character, and implemented them into Unreal Engine 5.</p>
-                <br>
-                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                    <img src="images/4f63b3_3424995f185343a793cb06b68f285824f003.jpg" width="208" alt="Character Model 1">
-                    <img src="images/4f63b3_27284fe742fb44928ed390d4450d8f45f003.jpg" width="208" alt="Character Model 2">
-                    <img src="images/4f63b3_2875c138d6e94855bcd378f014f91fd1f003.jpg" width="208" alt="Character Model 3">
-                </div>
-            </section>
-
-            <h2>Teamwork</h2>
-            <section class="project-row">
-                <div class="project-media">
-                    <img src="images/FlowChart.png" alt="Flowchart">
-                </div>
-                <div class="project-content">
-                    <p>Here’s a flow chart I designed to demonstrate the intended interaction between the game and the back-end system. This aided the backend in grasping the concept and completing their tasks.</p>
-                </div>
-            </section>
-
-            <h2>Technical Systems & Tools</h2>
-            <section class="project-row">
-                <div class="project-content">
-                    <ul>
-                        <li><strong>Crypto UMG Chart:</strong> Drawing an UMG chart using C++ for real-time Crypto price from REST API, GraphQL and WebSocket API.</li>
-                        <li><strong>Emote System:</strong> Animation made in Cascadeur, adding Niagara Effect.</li>
-                        <li><strong>Network:</strong> All systems are multiplayer ready.</li>
-                    </ul>
-                </div>
-                <div class="project-media">
-                    <img src="images/4f63b3_c4367dd81f54409da70c1b09e732aa2df000.jpg" alt="Crypto Chart">
-                </div>
-            </section>
-
-            <hr class="divider">
-
-            <section class="project-row">
-                <div class="project-media" style="text-align: center;">
-                    <img src="images/ToanLogo96.png" style="width: 150px; margin: 0 auto;" alt="Swift Math Logo">
-                </div>
-                <div class="project-content">
-                    <p class="highlight" style="font-size: 1.5rem;">A simple mobile game developed in 3 hours, and took 3 days to publish on Google Play.</p>
-                    <p><a href="https://play.google.com/store/apps/details?id=com.mont.SwiftMath" target="_blank">View "Swift Math" on Google Play</a></p>
-                </div>
-            </section>
-
-            <hr class="divider">
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
-                <div style="text-align: center;">
-                    <h2>Inventory GameFeature</h2>
-                    <p><a href="https://github.com/lingsvu/Inventory-GameFeature" target="_blank">lingsvu/Inventory-GameFeature (github.com)</a></p>
-                    <p>A multiplayer ready Inventory system made in C++ to run loop for sorting, finding Item faster.</p>
-                </div>
-                <div style="text-align: center;">
-                    <h2>Jigsaw Inventory</h2>
-                    <p><a href="https://github.com/lingsvu/JigsawInventory" target="_blank">github.com/lingsvu/JigsawInventory</a></p>
-                    <p>A singleplayer Inventory system made in C++ inspired by Resident Evil.</p>
-                </div>
-            </div>
-
-            <hr class="divider">
-
-            <h2>A Free VR Game</h2>
-            <section class="project-row">
-                <div class="project-media">
-                    <img src="images/s2.png" alt="VR Game">
-                </div>
-                <div class="project-content">
-                    <p><a href="https://lingsvu.itch.io/chicken-hunter" target="_blank">Chicken Hunter by Linh (itch.io)</a></p>
-                    <p>Pick up the handgun and start shooting the flying chicken.</p>
-                    <p><small>Made with Unreal to work with Meta Quest 2. Start VR Link with your pc before starting the game.</small></p>
-                </div>
-            </section>
-
-            <h2>Other Work</h2>
-            <div style="margin-top: 20px;">
-                <p><strong>1 / Monkey Empire:</strong> Work on mobile MMORTS game Monkey Empire</p>
-                <p><strong>2 / Up4Distribution:</strong> Work as freelance for Up4Distribution UE4 project</p>
-            </div>
-
+        <div id="projects" class="section-title">
+            <h2>Selected Projects</h2>
         </div>
+
+        <article class="project-card">
+            <div class="project-media">
+                <img src="images/4f63b3_9ba4382ef0de432f82a8d14260fd86fb~mv2.png" alt="Auto Battler Game">
+            </div>
+            <div class="project-content">
+                <h3>Auto Battler Game</h3>
+                <div class="tech-tags">
+                    <span class="tag">Unreal Engine 5</span>
+                    <span class="tag">Single Player</span>
+                    <span class="tag">Strategy</span>
+                </div>
+                <p>Developed a complete single-player auto-battler game end-to-end. Responsible for core gameplay mechanics, AI logic, and UI implementation.</p>
+            </div>
+        </article>
+
+        <article class="project-card reverse">
+            <div class="project-media">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/2IPbygLYHZ4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3>Zombie Shooter</h3>
+                <div class="tech-tags">
+                    <span class="tag">Unreal Engine</span>
+                    <span class="tag">AI Navigation</span>
+                    <span class="tag">Action</span>
+                </div>
+                <p>A fast-paced shooter project focusing on enemy AI behavior, weapon handling, and particle effects.</p>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div class="project-media">
+                <img src="images/4f63b3_e7d06d2edb564c998e5dc84007900110~mv2.png" alt="Lyra PVE Shooter">
+            </div>
+            <div class="project-content">
+                <h3>Lyra PVE Shooter (Killing Floor Style)</h3>
+                <div class="tech-tags">
+                    <span class="tag">C++</span>
+                    <span class="tag">Lyra Framework</span>
+                    <span class="tag">Multiplayer</span>
+                    <span class="tag">Data-Driven</span>
+                </div>
+                <ul>
+                    <li>Transformed the UE5 Lyra starter project into a complete, playable online PVE Shooter inspired by <em>Killing Floor</em>.</li>
+                    <li>Architected fully customizable gameplay data using Data Tables, enabling game designers to tweak difficulty and wave parameters without code changes.</li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="project-card reverse">
+            <div class="project-media">
+                <img src="images/4f63b3_2b338e94e7dd427dae75ab7afdee5587~mv2.png" alt="Coop Mobile Shooter">
+            </div>
+            <div class="project-content">
+                <h3>Coop Mobile Zombie Defense</h3>
+                <div class="tech-tags">
+                    <span class="tag">Mobile Optimization</span>
+                    <span class="tag">Third Person</span>
+                    <span class="tag">Co-op</span>
+                </div>
+                <p>Worked on a cooperative third-person shooter for mobile platforms. Implemented touch controls, wave management systems, and network replication for cooperative play against zombie waves.</p>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div class="project-media" style="flex-direction: column; padding: 20px;">
+                <div class="gallery-grid">
+                    <img src="images/4f63b3_3424995f185343a793cb06b68f285824f003.jpg" alt="Character Model 1">
+                    <img src="images/4f63b3_27284fe742fb44928ed390d4450d8f45f003.jpg" alt="Character Model 2">
+                    <img src="images/4f63b3_2875c138d6e94855bcd378f014f91fd1f003.jpg" alt="Character Model 3">
+                </div>
+            </div>
+            <div class="project-content">
+                <h3>3D Pipeline & Implementation</h3>
+                <div class="tech-tags">
+                    <span class="tag">Blender</span>
+                    <span class="tag">Substance Painter</span>
+                    <span class="tag">Cascadeur</span>
+                </div>
+                <p>Full character pipeline execution: 3D Modeling in Blender, Texturing in Substance, and Animation in Cascadeur. Successfully rigged and implemented characters into Unreal Engine 5 with retargeting.</p>
+            </div>
+        </article>
+
+        <div class="section-title">
+            <h2>Technical Systems & Architecture</h2>
+        </div>
+
+        <article class="project-card reverse">
+            <div class="project-media">
+                <img src="images/FlowChart.png" alt="Flowchart" style="object-fit: contain; padding: 20px;">
+            </div>
+            <div class="project-content">
+                <h3>Backend Integration Flow</h3>
+                <p>Designed comprehensive flowcharts to bridge the gap between Game Client and Backend systems. This documentation facilitated smoother API implementation and team synchronization.</p>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div class="project-media">
+                <img src="images/4f63b3_c4367dd81f54409da70c1b09e732aa2df000.jpg" alt="Crypto Chart" style="object-fit: cover;">
+            </div>
+            <div class="project-content">
+                <h3>Advanced C++ Systems</h3>
+                <div class="tech-tags">
+                    <span class="tag">C++</span>
+                    <span class="tag">REST API</span>
+                    <span class="tag">GraphQL</span>
+                    <span class="tag">WebSocket</span>
+                    <span class="tag">Niagara</span>
+                </div>
+                <ul>
+                    <li><strong>Real-time Data Visualization:</strong> Engineered a custom UMG chart using C++ to render real-time Crypto prices fetched via REST, GraphQL, and WebSockets.</li>
+                    <li><strong>Emote System:</strong> Integrated Cascadeur animations with Niagara VFX.</li>
+                    <li><strong>Network Replication:</strong> Ensured all systems were fully multiplayer-ready.</li>
+                </ul>
+            </div>
+        </article>
+
+        <div id="github" class="section-title">
+            <h2>Open Source & Mini Games</h2>
+        </div>
+
+        <div class="grid-2-col">
+            <div class="mini-card">
+                <img src="images/ToanLogo96.png" style="width: 80px; margin-bottom: 15px;" alt="Swift Math Logo">
+                <h3>Swift Math</h3>
+                <p>A simple mobile game developed in 3 hours, published to Google Play in 3 days.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.mont.SwiftMath" target="_blank" class="btn btn-outline">View on Google Play</a>
+            </div>
+
+            <div class="mini-card">
+                <img src="images/s2.png" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;" alt="VR Game">
+                <h3>Chicken Hunter VR</h3>
+                <p>A Meta Quest 2 VR shooter built with Unreal Engine.</p>
+                <a href="https://lingsvu.itch.io/chicken-hunter" target="_blank" class="btn btn-outline">Play on Itch.io</a>
+            </div>
+            
+            <div class="mini-card">
+                <h3>Inventory GameFeature</h3>
+                <p class="tag" style="display:inline-block; margin-bottom: 10px;">C++ Plugin</p>
+                <p>A multiplayer-ready Inventory system optimized for sorting and finding items efficiently.</p>
+                <a href="https://github.com/lingsvu/Inventory-GameFeature" target="_blank">View on GitHub &rarr;</a>
+            </div>
+
+            <div class="mini-card">
+                <h3>Jigsaw Inventory</h3>
+                <p class="tag" style="display:inline-block; margin-bottom: 10px;">C++ System</p>
+                <p>Single-player grid-based inventory system inspired by <em>Resident Evil 4</em>.</p>
+                <a href="https://github.com/lingsvu/JigsawInventory" target="_blank">View on GitHub &rarr;</a>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h2>Professional Experience</h2>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 30px; border-radius: var(--radius); border-left: 4px solid var(--accent-color);">
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 15px;">
+                    <strong style="color: #fff; font-size: 1.1rem;">Monkey Empire</strong><br>
+                    <span style="color: var(--text-secondary);">Mobile MMORTS Game Development</span>
+                </li>
+                <li>
+                    <strong style="color: #fff; font-size: 1.1rem;">Up4Distribution</strong><br>
+                    <span style="color: var(--text-secondary);">Freelance UE4 Developer</span>
+                </li>
+            </ul>
+        </div>
+
     </main>
 
-    <footer class="footer">
-        <h2>Linh Vu</h2>
-        <p><a href="mailto:lingsvu@gmail.com">lingsvu@gmail.com</a></p>
+    <footer id="contact" class="footer">
+        <div class="container">
+            <h2>Linh Vu</h2>
+            <p>Ready to build the next great game?</p>
+            <a href="mailto:lingsvu@gmail.com" class="social-link">lingsvu@gmail.com</a>
+        </div>
     </footer>
 
 </body>
